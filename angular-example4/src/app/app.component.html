@@ -1,0 +1,25 @@
+<div class="container">
+    <!--On submit of the form i.e on pressing enter, todoSubmit() function gets called in app.component.ts. And the value we entered gets logged on the console.
+      But this doesn't add the value entered to the array, because we have not associated the enter keypress to the Add(+) button-->
+    <form #todoForm="ngForm" (ngSubmit)="todoSubmit(todoForm.value)">
+        <div class="form-group">
+            <h1 class="text-center text-primary">Todo App</h1>
+            <div class="input-group-prepend"> <input type="text" #todo class="form-control" placeholder="Add Todo" name="todo" ngModel>
+                <span class="input-group-text" (click)="addTodo(todo.value)">
+                <!--use Material icons to include an add button -->
+                <i class="material-icons">add</i>
+              </span>
+            </div>
+            <!--Now we have to fetch data stored in “todosArray.” We will use the *ngFor directive to loop through the array and extract the data.-->
+            <div class="data">
+                <!--Please open Inspect tool in Chrome browser and check if the array is getting updated on the console everytime you add a new element-->
+                <ul class="list-instyled">
+                    <li *ngFor="let todo of todoArray">{{todo}}
+                        <!--use Material icons to include a delete button --><i (click)="deleteItem(todo)" class="material-icons">delete</i></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<router-outlet></router-outlet>
